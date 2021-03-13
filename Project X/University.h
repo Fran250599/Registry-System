@@ -38,7 +38,7 @@ public:
 
 	// Mantenimiento general a nivel de registro
 
-		//Mantenimiento de años y ciclos lectivos
+		//Mantenimiento de aï¿½os y ciclos lectivos
 		void showYearsAndCycles();
 		void addYearsAndCycles();
 
@@ -46,6 +46,8 @@ public:
 		void addCareers();
 		void addCourses();
 		
+		//Empadronamiento
+		void listing();
 
 	~University() {
 		this->administradores->~List();
