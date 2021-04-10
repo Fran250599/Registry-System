@@ -2,6 +2,7 @@
 #include <iostream>
 #include "List.h"
 #include "Courses.h"
+#include "Users.h"
 
 class Career {
 private:
@@ -13,6 +14,7 @@ private:
 	std::string* facultad;
 	
 	List<Courses*>* c = new List<Courses*>();
+	List<Student*>* s = new List<Student*>();
 
 	bool status = false;
 
@@ -24,6 +26,7 @@ public:
 	std::string getName() { return this->name; }
 
 	List<Courses*>* getCourses() { return this->c; }
+	List<Student*>* getStudents() { return this->s; }
 
 	~Career() { delete escuela, facultad; }
 };

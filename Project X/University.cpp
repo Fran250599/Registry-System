@@ -10,7 +10,7 @@ void University::createUser(){
 	Interface::print("Digite el nombre");
 	std::string name = Interface::getString();
 
-	Interface::print("Digite la contraseña");
+	Interface::print("Digite la contraseï¿½a");
 	std::string password = Interface::getString();
 
 	Interface::print("Defina el rol del usuario.");
@@ -144,7 +144,7 @@ void University::showYearsAndCycles(){
 		}
 	}
 	catch (std::exception e) {
-		e.what();
+		std::cout << e.what();
 	}
 }
 
@@ -263,7 +263,7 @@ void University::addYearsAndCycles(){
 void University::addCareers(){
 	Interface::cleanTrash();
 
-	Interface::print("Se procederá a crear una nueva carrera.");
+	Interface::print("Se procederï¿½ a crear una nueva carrera.");
 
 	Interface::print("Ingrese el codigo de la carrera: ");
 	std::string code = Interface::getString();
@@ -334,7 +334,7 @@ void University::addCourses() {
 		if (this->carreras->buscarEspecificoPorCodigo(code) == true) {		//Verifies that the career exists
 
 			Interface::cleanScreen();
-			Career* auxCareer = this->carreras->obtenerElemento(code);
+			Career* auxCareer = this->carreras->obtenerElementoPorCodigo(code);
 
 			Interface::print(auxCareer->getName());
 
@@ -428,6 +428,114 @@ void University::addCourses() {
 		Interface::cleanScreen();
 	}
 }
+
+void University::listing(){			//We're going to listing students in a career
+
+	try {
+		if (this->carreras->getFirst() != nullptr) {	//If any career is on the system this method isn't going to be executed
+			if (this->estudiantes->getFirst() != nullptr) {	//If any student is on the system this method isn't going to be executed
+				Interface::print("Se procedera a registrar un estudiante a una carrera \n");
+
+				Interface::print("Digite el numero de cedula: ");
+				std::string id = Interface::getString();
+
+				Student* auxStudent = new Student();
+				auxStudent->setId(id);
+
+
+				if (this->estudiantes->buscarEspecificoPorId(id) == true) {
+					auxStudent = this->estudiantes->obtenerElementoPorId(id);
+
+					Interface::print("Digite el numero de telefono del estudiante");
+					std::string phoneNumber = Interface::getString();
+					auxStudent->setPhoneNumber(phoneNumber);
+
+
+					Interface::print("Conoce el codigo de la carrera? 1) Si 2) No");
+
+					int opcion = Interface::getInt(1,2);
+					Interface::cleanTrash();
+
+					if (opcion == 1) {
+						Interface::print("Por favor digite el codigo ");
+						std::string code = Interface::getString();
+
+						if (this->carreras->buscarEspecificoPorCodigo(code) == true) {
+
+							//We're going to add the Student to this career students list
+							Career* auxCareer = this->carreras->obtenerElementoPorCodigo(code);
+							List<Student*>* careerStudentsList = auxCareer->getStudents();
+							careerStudentsList->insert(auxStudent);
+
+							//Now, we save the career code in the student information in case we need it in the future
+							auxStudent->setCareerCode(code);
+
+							Interface::printSuccess("Estudiante anadido a la carrera de");
+							Interface::print(auxCareer->getName());
+						}
+					}
+					else {
+						Interface::print("Estas son las carreras disponibles en este momento. ");
+
+						
+
+						//----------------------------------------------------------
+					}
+				}
+
+				else {
+					Interface::printError("Esta persona no esta registrada en la malla curricular.");
+					system("PAUSE");
+					Interface::cleanScreen();
+				}
+			}
+			else {
+				Interface::printError("Todavia no hay estudiantes en el sistema.");
+				system("PAUSE");
+				Interface::cleanScreen();
+			}
+		}
+		else {
+			Interface::printError("Todavia no hay carreras registradas.");
+			system("PAUSE");
+			Interface::cleanScreen();
+		}
+	}
+	catch (std::exception e) {
+		Interface::print(e.what());
+	}
+}
+
+void University::showListing(){
+	try {
+		Interface::print("Se procedera a enlistar a todos los estudiantes en sus respectivas carreras");
+
+		int i = 0;
+
+		Career* auxCareer = new Career();
+		while (i < this->carreras->getCantidad()) {
+
+			auxCareer = this->carreras->obtenerElemento(i);
+
+			Interface::print("------------------------------");
+			Interface::print(auxCareer->getName());
+
+			List<Student*>* auxStudents = auxCareer->getStudents();
+
+			Interface::print(auxStudents->toString());
+
+			Interface::print("------------------------------");
+
+
+			i++;
+		}
+		this->carreras;
+	}
+	catch (std::exception e) {
+		Interface::print(e.what());
+	}
+}
+	
 
 
 

@@ -97,7 +97,7 @@ void Menu::mantenmientoANivelDeRegistro() {
 
 				int opcion1 = Interface::getInt();
 
-				correcto:
+			correcto:
 				if (opcion1 == 1 || opcion1 == 2 || opcion1 == 3) {
 					if (opcion1 == 1) {
 						Interface::cleanScreen();
@@ -143,19 +143,51 @@ void Menu::mantenmientoANivelDeRegistro() {
 				int opcion2 = Interface::getInt();
 
 				switch (opcion2) {
-					case 1: {
-						Interface::cleanScreen();
-						this->u->addCareers();
-					}break;
-					case 2: {
-						Interface::cleanScreen();
-						this->u->addCourses();
-					}break;
+				case 1: {
+					Interface::cleanScreen();
+					this->u->addCareers();
+				}break;
+				case 2: {
+					Interface::cleanScreen();
+					this->u->addCourses();
+				}break;
+				case 3: {
+					menu2 = false;
+					Interface::cleanScreen();
+				}
 				}
 			}
 		}break;
+		case 3: {
+			Interface::cleanScreen();
+			Interface::cleanTrash();
+
+			Interface::print("Empadronamiento.");
+			Interface::print("1) Empadronamiento de estudiantes.");
+			Interface::print("2) Mostrar estudiantes empadronados.");
+			Interface::print("3) Volver.");
+
+			bool menu3 = true;
+			int opcion3 = Interface::getInt(1, 3);
+
+			while (menu3 == true) {
+				switch (opcion3) {
+				case 1: {
+					Interface::cleanScreen();
+					this->u->listing();
+				}break;
+				case 2: {
+
+				}break;
+				case 3: {
+					menu3 == false;
+					Interface::cleanScreen();
+				}break;
+
+				}
+			}
+		}
 		}
 	}
 }
-
-
+	

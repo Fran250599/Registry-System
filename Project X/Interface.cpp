@@ -101,7 +101,7 @@ void Interface::cleanScreen()
 
 int Interface::getInt(int min, int max) {// gets and int and verifies if it's between min and max
 	int value = Interface::getInt();
-	if (value == 0) { return 0; }
+	/*if (value == 0) { return 0; }
 	else {
 		try {
 			if (value >= min && value <= max) {
@@ -110,5 +110,19 @@ int Interface::getInt(int min, int max) {// gets and int and verifies if it's be
 			else { throw - 2; }
 		}
 		catch (int) { printError("Exception caught: Range exceeded"); system("PAUSE"); return 0; }
+	}*/
+
+	int difference = max - min;
+	if (value >= min && value <= max) {
+		valido:
+		return value;
+	}
+	else {
+		do {
+			Interface::printError("Dato invalido.");
+			std::cout << "Valor valido entre " << min << " y " << max <<std::endl;
+			Interface::getInt();
+		} while (value < min && value > max);
+		goto valido;
 	}
 }

@@ -15,10 +15,13 @@ public:
 	int getCantidad() const;
 	void setCantidad(int cantidad);
 	void insert(T element);
-  	T obtenerElemento(std::string);
+	T obtenerElemento(int);
+  	T obtenerElementoPorCodigo(std::string);
+	T obtenerElementoPorId(std::string);
 	bool vacia() const;
-	bool buscarEspecificoPorCodigo(std::string code);   //Codigos de carrera...
+	bool buscarEspecificoPorCodigo(std::string code);   
 	bool buscarEspecificoPorNombre(std::string name);
+	bool buscarEspecificoPorId(std::string id);
 	void eliminarEspecifico(std::string id);
 	std::string toString(); 
 	~List();
@@ -31,7 +34,12 @@ List<T>::List(Node<T>* f) { this->first = f; }
 
 template <class T>
 Node<T>* List<T>::getFirst() const {
-	return first;
+	if (this->first != nullptr) {
+		return first;
+	}
+	else{
+		throw std::invalid_argument("Lista vacia.");
+	}
 }
 
 template <class T>
@@ -59,9 +67,28 @@ void List<T>::insert(T element) {
 	}
 }
 
+
+template <class T>
+T List<T>::obtenerElemento(int i) {
+	Node<T>* aux = this->first;
+	int j = 0;
+
+	if (j == i) {
+		return this->first;
+	}
+	else {
+		while (j < i) {
+			aux = aux->getNext();
+			j++;
+		}
+		return aux;
+	}
+
+}
+
 /*--------------------------------------------------------------------------*/
 template <class T>
-T List<T>::obtenerElemento(std::string code) {
+T List<T>::obtenerElementoPorCodigo(std::string code) {
 	if (this->first != nullptr) {
 		if (this->first->getData()->getCode() == code) {
 			return this->first->getData();
@@ -71,6 +98,27 @@ T List<T>::obtenerElemento(std::string code) {
 
 			while (aux->getNext() != nullptr) {
 				if (aux->getData()->getCode() == code) {
+					return aux->getData();
+				}
+				aux = aux->getNext();
+			}
+			return nullptr;
+		}
+
+	}
+}
+
+template <class T>
+T List<T>::obtenerElementoPorId(std::string id) {
+	if (this->first != nullptr) {
+		if (this->first->getData()->getId() == id) {
+			return this->first->getData();
+		}
+		else {
+			Node<T>* aux = this->first->getNext();
+
+			while (aux->getNext() != nullptr) {
+				if (aux->getData()->getId() == id) {
 					return aux->getData();
 				}
 				aux = aux->getNext();
@@ -118,6 +166,27 @@ bool List<T>::buscarEspecificoPorNombre(std::string nombre) {
 				}
 			}
 			
+		}
+	}
+	return false;
+}
+
+template <class T>
+bool List<T>::buscarEspecificoPorId(std::string id) {
+	Node<T>* aux = first;
+
+	if (aux != nullptr) {
+		if (aux->getData()->getId() == id) {
+			return true;
+		}
+		else {
+			while (aux->getNext() != nullptr) {
+				aux = aux->getNext();
+				if (aux->getData()->getId() == id) {
+					return true;
+				}
+			}
+
 		}
 	}
 	return false;

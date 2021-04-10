@@ -48,6 +48,7 @@ public:
 		
 		//Empadronamiento
 		void listing();
+		void showListing();
 
 	~University() {
 		this->administradores->~List();

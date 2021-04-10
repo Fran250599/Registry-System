@@ -11,6 +11,12 @@ protected:
     bool status = true;
 
 public:
+    Users() {
+        this->id = " ";
+        this->name = " ";
+        this->password = " ";
+        this->role = " ";
+    }
     Users(std::string _id, std::string _name, std::string _password, std::string _role) {
         this->id = _id;
         this->name = _name;
@@ -42,9 +48,30 @@ public:
 };
 
 class Student : public Users {
+private:
+    std::string phoneNumber;
+    std::string careerCode;
 public:
+    Student() : Users() {
+        this->phoneNumber = " ";
+        this->careerCode = " ";
+    }
     Student(std::string id, std::string name, std::string password, std::string role) : Users(id, name, password, role) {
+        this->phoneNumber = " ";
+        this->careerCode = " ";
+    }
+    void setPhoneNumber(std::string phone) {
+        this->phoneNumber = phone;
+    }
+    void setCareerCode(std::string code) {
+        this->careerCode = code;
+    }
+    std::string toString() {
+        std::stringstream x;
 
+        x << this->name;
+
+        return x.str();
     }
 };
 
