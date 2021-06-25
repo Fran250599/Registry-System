@@ -70,18 +70,19 @@ void List<T>::insert(T element) {
 
 template <class T>
 T List<T>::obtenerElemento(int i) {
+
 	Node<T>* aux = this->first;
 	int j = 0;
 
 	if (j == i) {
-		return this->first;
+		return this->first->getData();
 	}
 	else {
 		while (j < i) {
 			aux = aux->getNext();
 			j++;
 		}
-		return aux;
+		return aux->getData();
 	}
 
 }

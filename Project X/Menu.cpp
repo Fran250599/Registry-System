@@ -97,7 +97,7 @@ void Menu::mantenmientoANivelDeRegistro() {
 
 				int opcion1 = Interface::getInt();
 
-			correcto:
+		
 				if (opcion1 == 1 || opcion1 == 2 || opcion1 == 3) {
 					if (opcion1 == 1) {
 						Interface::cleanScreen();
@@ -180,7 +180,7 @@ void Menu::mantenmientoANivelDeRegistro() {
 
 				}break;
 				case 3: {
-					menu3 == false;
+					menu3 = false;
 					Interface::cleanScreen();
 				}break;
 
