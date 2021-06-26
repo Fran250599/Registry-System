@@ -55,6 +55,7 @@ template <class T>
 void List<T>::insert(T element) {
 	if (this->first == nullptr) {
 		this->first = new Node<T>(element, nullptr);
+		cantidad++;
 	}
 	else {
 		Node<T>* aux = this->first;

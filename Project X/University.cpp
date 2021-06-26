@@ -81,60 +81,61 @@ void University::showUsers(){
 
 	//This counter it'll check if the lists are empty
 	int cont = 0;
+	
+		if (this->administradores->vacia() == false) {
+			Interface::print("Administradores");
+			Interface::print(this->administradores->toString());
+			Interface::print("\n--------------------------\n");
+		}
+		else {
+			cont++;
+		}
+		if (this->registros->vacia() == false) {
+			Interface::print("Registro");
+			Interface::print(this->registros->toString());
+			Interface::print("\n--------------------------\n");
+		}
+		else {
+			cont++;
+		}
+		if (this->mantenimientos->vacia() == false) {
+			Interface::print("Mantenimiento");
+			Interface::print(this->mantenimientos->toString());
+			Interface::print("\n--------------------------\n");
+		}
+		else {
+			cont++;
+		}
+		if (this->profesores->vacia() == false) {
+			Interface::print("Profesores");
+			Interface::print(this->profesores->toString());
+			Interface::print("\n--------------------------\n");
+		}
+		else {
+			cont++;
+		}
+		if (this->estudiantes->vacia() == false) {
+			Interface::print("Estudiantes");
+			Interface::print(this->estudiantes->toString());
+			Interface::print("\n--------------------------\n");
+		}
+		else {
+			cont++;
+		}
 
-	if (this->administradores->getFirst() != nullptr) {
-		Interface::print("Administradores");
-		Interface::print(this->administradores->toString());
-		Interface::print("\n--------------------------\n");
-	}
-	else {
-		cont++;
-	}
-	if (this->registros->getFirst() != nullptr) {
-		Interface::print("Registro");
-		Interface::print(this->registros->toString());
-		Interface::print("\n--------------------------\n");
-	}
-	else {
-		cont++;
-	}
-	if (this->mantenimientos->getFirst() != nullptr) {
-		Interface::print("Mantenimiento");
-		Interface::print(this->mantenimientos->toString());
-		Interface::print("\n--------------------------\n");
-	}
-	else {
-		cont++;
-	}
-	if (this->profesores->getFirst() != nullptr) {
-		Interface::print("Profesores");
-		Interface::print(this->profesores->toString());
-		Interface::print("\n--------------------------\n");
-	}
-	else {
-		cont++;
-	}
-	if (this->estudiantes->getFirst() != nullptr) {
-		Interface::print("Estudiantes");
-		Interface::print(this->estudiantes->toString());
-		Interface::print("\n--------------------------\n");
-	}
-	else {
-		cont++;
-	}
 
-
-	if (cont == 5) {
-		Interface::printError("Todavia no hay usuarios registrados.");
-	}
-
+		if (cont == 5) {
+			Interface::printError("Todavia no hay usuarios registrados.");
+		}
+	
+	
 	system("PAUSE");
 	Interface::cleanScreen();
 }
 
 void University::showYearsAndCycles(){
 	try {
-		if (this->annios->getFirst() != nullptr) {
+		if (this->annios->vacia() == false) {
 		Interface::print(this->annios->toString());
 			system("PAUSE");
 		}
@@ -327,7 +328,7 @@ void University::addCourses() {
 
 	Interface::cleanTrash();
 
-	if (this->carreras->getFirst() != nullptr) {
+	if (this->carreras->vacia() == false) {
 		Interface::print("Digite el codigo de la carrera");
 		std::string code = Interface::getString();
 
@@ -357,7 +358,7 @@ void University::addCourses() {
 				int courseCredits = Interface::getInt();
 
 				//If there are no courses yet we didn't need to ask for requisits courses
-				if (auxCourses->getFirst() != nullptr) {
+				if (auxCourses->vacia() == false) {
 
 					Interface::print("Cantidad de cursos requisitos");
 
@@ -432,8 +433,8 @@ void University::addCourses() {
 void University::listing(){			//We're going to listing students in a career
 
 	try {
-		if (this->carreras->getFirst() != nullptr) {	//If any career is on the system this method isn't going to be executed
-			if (this->estudiantes->getFirst() != nullptr) {	//If any student is on the system this method isn't going to be executed
+		if (!this->carreras->vacia()) {	//If any career is on the system this method isn't going to be executed
+			if (!this->estudiantes->vacia()) {	//If any student is on the system this method isn't going to be executed
 				Interface::print("Se procedera a registrar un estudiante a una carrera \n");
 
 				Interface::print("Digite el numero de cedula: ");
@@ -474,12 +475,22 @@ void University::listing(){			//We're going to listing students in a career
 							Interface::print(auxCareer->getName());
 						}
 					}
-					else {
-						Interface::print("Estas son las carreras disponibles en este momento. ");
+					else if (opcion ==2) {
 
+						int aux = this->carreras->getCantidad();
+						if (aux > 0) {
+
+							Interface::print("Estas son las carreras disponibles en este momento. ");
 						
+							for (int i = 0; i < aux; i++) {
+								Career* aux = this->carreras->obtenerElemento(i);
+								Interface::print(i +") " + aux->getName());
 
-						//----------------------------------------------------------
+							}
+						}
+						else {
+							Interface::print("No hay carreras disponibles en este momento.");
+						}
 					}
 				}
 
@@ -508,28 +519,47 @@ void University::listing(){			//We're going to listing students in a career
 
 void University::showListing(){
 	try {
-		Interface::print("Se procedera a enlistar a todos los estudiantes en sus respectivas carreras");
 
 		int i = 0;
 
-		Career* auxCareer = new Career();
-		while (i < this->carreras->getCantidad()) {
+		
 
-			auxCareer = this->carreras->obtenerElemento(i);
+		if (!this->carreras->vacia()) {
+			
+				while (i < this->carreras->getCantidad()) {
+					Interface::print("Se procedera a enlistar a todos los estudiantes en sus respectivas carreras");
 
-			Interface::print("------------------------------");
-			Interface::print(auxCareer->getName());
+					Career* auxCareer = new Career();
+					auxCareer = this->carreras->obtenerElemento(i);
 
-			List<Student*>* auxStudents = auxCareer->getStudents();
+					if (!auxCareer->getStudents()->vacia()) {
 
-			Interface::print(auxStudents->toString());
+					Interface::print("------------------------------");
+					Interface::print(auxCareer->getName());
 
-			Interface::print("------------------------------");
+					List<Student*>* auxStudents = auxCareer->getStudents();
+
+					Interface::print(auxStudents->toString());
+
+					Interface::print("------------------------------");
 
 
-			i++;
+					i++;
+				}
+					else {
+						Interface::print("------------------------------");
+						Interface::print(auxCareer->getName());
+						Interface::print("Todavia no hay estudiantes empadronados en esta carrera.");
+
+						Interface::print("------------------------------");
+					}
+			}
+			
 		}
-		this->carreras;
+		else {
+			Interface::print("Todavia no hay carreras registradas.");
+			system("PAUSE");
+		}
 	}
 	catch (std::exception e) {
 		Interface::print(e.what());

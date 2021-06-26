@@ -28,6 +28,9 @@ void Menu::menuPrincipal(){
 		case 2: {
 			Menu::mantenmientoANivelDeRegistro();
 		} break;
+		case 3: {
+		
+		}break;
 		case 7: { menu = false; } break;
 		}
 		
@@ -159,33 +162,40 @@ void Menu::mantenmientoANivelDeRegistro() {
 			}
 		}break;
 		case 3: {
-			Interface::cleanScreen();
-			Interface::cleanTrash();
-
-			Interface::print("Empadronamiento.");
-			Interface::print("1) Empadronamiento de estudiantes.");
-			Interface::print("2) Mostrar estudiantes empadronados.");
-			Interface::print("3) Volver.");
-
 			bool menu3 = true;
-			int opcion3 = Interface::getInt(1, 3);
-
 			while (menu3 == true) {
+				Interface::cleanScreen();
+				Interface::cleanTrash();
+
+				Interface::print("Empadronamiento.");
+				Interface::print("1) Empadronamiento de estudiantes.");
+				Interface::print("2) Mostrar estudiantes empadronados.");
+				Interface::print("3) Volver.");
+
+
+				int opcion3 = Interface::getInt(1, 3);
+
+
 				switch (opcion3) {
 				case 1: {
 					Interface::cleanScreen();
 					this->u->listing();
 				}break;
 				case 2: {
-
+					Interface::cleanScreen();
+					this->u->showListing();
 				}break;
 				case 3: {
 					menu3 = false;
-					Interface::cleanScreen();
+					Interface::cleanScreen();			
 				}break;
 
 				}
 			}
+		}break;
+		case 4: {
+			menu = false;
+			Interface::cleanScreen();
 		}
 		}
 	}
