@@ -1,7 +1,7 @@
 #include <iostream>
 #include <sstream>
 
-#include "Menu.h"
+#include "../include/Menu.h"
 
 int main() {
 

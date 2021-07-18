@@ -1,4 +1,4 @@
-#include "Cycle.h"
+#include "../include/Cycle.h"
 
 Cycle::Cycle() {
 	this->inicio = " ";

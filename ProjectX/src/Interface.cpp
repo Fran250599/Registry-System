@@ -1,4 +1,4 @@
-#include "Interface.h"
+#include "../include/Interface.h"
 
 void Interface::print(std::string chain)
 {

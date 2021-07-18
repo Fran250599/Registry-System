@@ -1,4 +1,4 @@
-#include "Courses.h"
+#include "../include/Courses.h"
 
 Courses::Courses(){
 	this->code = " ";
