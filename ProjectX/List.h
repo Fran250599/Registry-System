@@ -230,10 +230,10 @@ bool List<T>::vacia() const {
 }
 
 template <class T>
-void List<T>::eliminarEspecifico(std::string id) {		//Nos ayudará a eliminar usuarios especificos de cualquier tipo
-	Node* aux;
-	Node* actual = this->first;
-	if (this->first == NULL) { //SI LA LISTA ESTA VACÍA.
+void List<T>::eliminarEspecifico(std::string id) {		//Nos ayudarï¿½ a eliminar usuarios especificos de cualquier tipo
+	Node<T>* aux;
+	Node<T>* actual = this->first;
+	if (this->first == NULL) { //SI LA LISTA ESTA VACï¿½A.
 		throw std::invalid_argument("Lista vacia.");
 	}
 	if (this->first->getData()->getId() == id) { //SI ES EL PRIMER NODO.
@@ -246,10 +246,10 @@ void List<T>::eliminarEspecifico(std::string id) {		//Nos ayudará a eliminar usu
 	while (actual != nullptr && actual->getNext()->getData()->getId() != id)
 		actual = actual->getNext();
 
-	if (actual == nullptr) {//SI NO LO ENCONTRÓ.
-		throw std::invalid_argument("No se encontró el usuario.");
+	if (actual == nullptr) {//SI NO LO ENCONTRï¿½.
+		throw std::invalid_argument("No se encontrï¿½ el usuario.");
 	}
-	//SI LO ENCONTRÓ.
+	//SI LO ENCONTRï¿½.
 	aux = actual->getNext();
 	actual->setNext(aux->getNext());
 	aux->~Node();

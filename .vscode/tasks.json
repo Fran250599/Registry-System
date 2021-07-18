@@ -1,0 +1,29 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-o",
+                "main",
+                "-g",
+                "C:\\Programacion\\C++\\Proyect X\\Registry-System\\ProjectX\\main.cpp",
+                "C:\\Programacion\\C++\\Proyect X\\Registry-System\\ProjectX\\Career.cpp",
+                "C:\\Programacion\\C++\\Proyect X\\Registry-System\\ProjectX\\Courses.cpp",
+                "C:\\Programacion\\C++\\Proyect X\\Registry-System\\ProjectX\\Cycle.cpp",
+                "C:\\Programacion\\C++\\Proyect X\\Registry-System\\ProjectX\\Group.cpp",
+                "C:\\Programacion\\C++\\Proyect X\\Registry-System\\ProjectX\\Interface.cpp",
+                "C:\\Programacion\\C++\\Proyect X\\Registry-System\\ProjectX\\Menu.cpp",
+                "C:\\Programacion\\C++\\Proyect X\\Registry-System\\ProjectX\\University.cpp",
+                "C:\\Programacion\\C++\\Proyect X\\Registry-System\\ProjectX\\Year.cpp"
+                
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }   
+        }
+    ]
+}
