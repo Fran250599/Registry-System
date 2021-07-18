@@ -77,6 +77,13 @@ public:
 
 class Professor : public Users {
 public:
+    Professor() {
+        id = "";
+        name = "";
+        password = "";
+        role = "";
+    }
+
     Professor(std::string id, std::string name, std::string password, std::string role) : Users(id, name, password, role) {
 
     }

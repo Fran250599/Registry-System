@@ -1,6 +1,9 @@
 #pragma once
 #include <iostream>
 #include <vector>
+#include <sstream>
+#include "List.h"
+#include "Group.h"
 
 class Courses {
 private:
@@ -13,12 +16,18 @@ private:
 	bool state = true;
 
 	std::vector<std::string>* requisitesCourses = new std::vector<std::string>(3);
+	
+	List<Group*>* groups = new List<Group*>();
 
 public:
 	Courses();
 	Courses(std::string, std::string, std::string, int, int, int, std::vector<std::string>*);
 
 	std::string getCode() { return this->code; }
+	List<Group*>* getGroups() { return this->groups; }
 
-	~Courses() { delete this->requisitesCourses; }
+	std::string studyPlanString();
+
+
+	~Courses() { delete this->requisitesCourses, groups; }
 };

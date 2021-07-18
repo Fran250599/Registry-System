@@ -104,9 +104,12 @@ T List<T>::obtenerElementoPorCodigo(std::string code) {
 				}
 				aux = aux->getNext();
 			}
-			return nullptr;
+			throw std::invalid_argument("No existe.");
 		}
 
+	}
+	else {
+		throw std::invalid_argument("No existe.");
 	}
 }
 
@@ -128,6 +131,9 @@ T List<T>::obtenerElementoPorId(std::string id) {
 			return nullptr;
 		}
 
+	}
+	else {
+		throw std::invalid_argument("No existe.");
 	}
 }
 

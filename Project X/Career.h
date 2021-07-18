@@ -24,9 +24,11 @@ public:
 
 	std::string getCode() { return this->code; }
 	std::string getName() { return this->name; }
+	std::string getGrade() { return this->grade; }
 
 	List<Courses*>* getCourses() { return this->c; }
 	List<Student*>* getStudents() { return this->s; }
+
 
 	~Career() { delete escuela, facultad; }
 };

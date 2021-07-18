@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <vector>
+#include <ctime>
 #include "List.h"
 #include "Users.h"
 #include "Year.h"
@@ -49,6 +50,14 @@ public:
 		//Empadronamiento
 		void listing();
 		void showListing();
+
+	//Mantenimiento por escuela
+
+		//Consulta de plan de estudios vigente por carrera
+		void showStudyPlan();
+		void groupCreation();
+		void generalStudiesRequest();
+		
 
 	~University() {
 		this->administradores->~List();

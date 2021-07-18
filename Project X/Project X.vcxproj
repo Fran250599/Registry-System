@@ -142,6 +142,7 @@
     <ClInclude Include="Career.h" />
     <ClInclude Include="Courses.h" />
     <ClInclude Include="Cycle.h" />
+    <ClInclude Include="Group.h" />
     <ClInclude Include="Interface.h" />
     <ClInclude Include="List.h" />
     <ClInclude Include="Menu.h" />
@@ -154,6 +155,7 @@
     <ClCompile Include="Career.cpp" />
     <ClCompile Include="Courses.cpp" />
     <ClCompile Include="Cycle.cpp" />
+    <ClCompile Include="Group.cpp" />
     <ClCompile Include="Interface.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menu.cpp" />

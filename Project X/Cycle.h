@@ -6,6 +6,7 @@ private:
 	std::string inicio;
 	std::string final;
 
+	std::string cycleName;
 public:
 	Cycle();
 	Cycle(std::string, std::string);
@@ -15,5 +16,6 @@ public:
 
     std::string getFinal() const;
     void setFinal(std::string final);
+	std::string getCycleName() { return this->cycleName; }
 
 };

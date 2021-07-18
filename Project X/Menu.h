@@ -10,6 +10,7 @@ public:
 
 	void seguridadYAdministracion();
 	void mantenmientoANivelDeRegistro();
+	void mantenimientoPorEscuela();
 
 	~Menu() {	delete this->u;	}
 };

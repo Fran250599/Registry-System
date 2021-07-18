@@ -294,6 +294,7 @@ void University::addCareers(){
 			Interface::printSuccess("Carrera creada con exito.");
 			system("PAUSE");
 			Interface::cleanScreen();
+		
 		}
 		else {
 			do {
@@ -522,6 +523,7 @@ void University::showListing(){
 
 		int i = 0;
 
+
 		
 
 		if (!this->carreras->vacia()) {
@@ -565,7 +567,176 @@ void University::showListing(){
 		Interface::print(e.what());
 	}
 }
+
+
+//This method will show the specified career study plan
+void University::showStudyPlan(){
+
+	Interface::cleanScreen();
+	Interface::cleanTrash();
+
+	try {
+
+		
+		Interface::print("Digite el codigo de carrera: ");
+		std::string careerCode = Interface::getString();
+
+		if (this->carreras->buscarEspecificoPorCodigo(careerCode)) {
+			if (!this->carreras->vacia()) {
+				Career* auxCareer = this->carreras->obtenerElementoPorCodigo(careerCode);
+
+				Interface::print("Carrera: " + auxCareer->getName());
+				Interface::print("Tipo: " + auxCareer->getGrade());
+				Interface::print("\nPlan de estudios \n");
+
+
+				List<Courses*>* auxCourses = auxCareer->getCourses();
+				int cant = auxCourses->getCantidad();
+				int i = 0;
+
+				while (i < cant) {
+
+					Courses* auxCourse = auxCourses->obtenerElemento(i);
+
+					Interface::print(auxCourse->studyPlanString());
+					i++;
+				}
+
+			}
+			else {
+				Interface::printError("Esta carrera no tiene cursos ingresados.");
+				system("PAUSE");
+				Interface::cleanScreen();
+				Interface::cleanTrash();
+			}
+		}
+		else {
+			Interface::printError("Esta carrera no existe.");
+		}
+	}
+	catch (std::exception e) {
+		Interface::print(e.what());
+	}
+
+}
+
+void University::groupCreation() {
+	Interface::cleanScreen();
+	Interface::cleanTrash();
+
+	try {
+		Interface::print("Digite el codigo de carrera: ");
+		std::string careerCode = Interface::getString();
+
+		Career* auxCareer = this->carreras->obtenerElementoPorCodigo(careerCode);
+
+		Interface::print("Digite el periodo lectivo (Ex: II-2020): ");
+		std::string cycle = Interface::getString();
+
+
+		//if(){			///Comprobacion de ciclos lectivos.
+
+			Interface::print("Digite el codigo del curso: ");
+			std::string courseCode = Interface::getString();
+
+			if (auxCareer->getCourses()->buscarEspecificoPorCodigo(courseCode) != false) {
+				Courses* auxCourse = auxCareer->getCourses()->obtenerElementoPorCodigo(courseCode);
+				List<Group*>* auxGroups = auxCourse->getGroups();
+
+
+				if (auxGroups->getCantidad() != 0) {
+					Interface::print("Actualmente existen los siguientes grupos del curso" + courseCode);
+						
+				//------------------------//
+
+
+				}
+
+
+				Interface::print("Cuantos grupos desea agregar: ");
+				int nGroups = Interface::getInt();
+
+				Group* auxGroup = new Group();
+
+				std::string courseCode = auxCourse->getCode();
+				
+				while (nGroups > 0) {
+
+					//NCR
+					srand(time(NULL));
+					int NCR = rand() % (50000 - 40000 + 1) + 40000;
+					Interface::print("NCR: " + NCR);
+
+
+					//# of group
+					int nOfGroup = (auxGroups->getCantidad()) + 1;
+					Interface::print("Grupo: " + nOfGroup);
+
+					//Professor
+					std::string professor = Interface::getString();
+					if (this->profesores->buscarEspecificoPorId(professor)) {
+						Professor* auxTeacher = this->profesores->obtenerElementoPorId(professor);
+
+						Interface::print("Profesor " + auxTeacher->getName());
+
+
+						//Cupo
+						Interface::print("Cupo deseado: ");
+						int cupo = Interface::getInt();
+	
+						//Horario
+						Interface::print("Horario:");
+						std::string schedule = Interface::getString();
+
+						//Creation of the new group
+						Group* auxGroup = new Group(courseCode, NCR, nOfGroup, auxTeacher, cupo, schedule);
+
+					}
+					else {
+						Interface::printError("No existe este profesor.");
+						system("PAUSE");
+					}
+
+
+
+					nGroups--;
+				}
+			}
+			else {
+				Interface::print("Este curso no existe en esta carrera.");
+				//Desea intentarlo de nuevo? ...
+
+				system("PAUSE");
+
+			}
+		//}
+
+	}
+	catch (std::exception e) {
+		Interface::print(e.what());
+	}
+
+}
 	
 
+void University::generalStudiesRequest() {
+	try {
+		Interface::print("Consulta general de matricula.\n");
 
+		Interface::print("Digite el codigo de carrera.");
+		std::string careerCode = Interface::getString();
+
+		if (this->carreras->buscarEspecificoPorCodigo(careerCode)) {
+
+
+		}
+		else {
+
+		}
+	}
+	catch (std::exception e) {
+		Interface::printError(e.what());
+	}
+
+}
 

@@ -29,7 +29,8 @@ void Menu::menuPrincipal(){
 			Menu::mantenmientoANivelDeRegistro();
 		} break;
 		case 3: {
-		
+			Menu::mantenimientoPorEscuela();
+			
 		}break;
 		case 7: { menu = false; } break;
 		}
@@ -198,6 +199,51 @@ void Menu::mantenmientoANivelDeRegistro() {
 			Interface::cleanScreen();
 		}
 		}
+	}
+}
+
+void Menu::mantenimientoPorEscuela(){
+	
+	bool menu = true;
+
+	while (menu == true) {
+		Interface::cleanScreen();
+		Interface::cleanTrash();
+
+		Interface::print("Mantenimiento por escuela.");
+		Interface::print("\n1) Consulta de plan de estudios vigente por carrera.");
+		Interface::print("2) Creacion de grupos.");
+		Interface::print("3) Consulta general de matricula.");
+		Interface::print("4) Ingreso de profesores.");
+		Interface::print("5) Mostrar profesores.");
+		Interface::print("6) Volver.");
+
+		int opcion = Interface::getInt();
+		switch (opcion) {
+		case 1: {		
+			this->u->showStudyPlan();
+			Interface::cleanScreen();
+			Interface::cleanTrash();
+		}break;
+		case 2: {
+			this->u->groupCreation();
+			Interface::cleanScreen();
+			Interface::cleanTrash();
+		}break;
+		
+		case 3: {
+			this->u->generalStudiesRequest();
+			Interface::cleanScreen();
+			Interface::cleanTrash();
+		}break;
+		case 6: {
+			menu = false;
+			Interface::cleanScreen();
+		}break;
+		}
+
+
+
 	}
 }
 	
