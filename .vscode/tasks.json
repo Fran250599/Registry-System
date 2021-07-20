@@ -9,15 +9,15 @@
                 "-o",
                 "main",
                 "-g",
-                "C:\\Programacion\\C++\\Proyect X\\Registry-System\\ProjectX\\src\\main.cpp",
-                "C:\\Programacion\\C++\\Proyect X\\Registry-System\\ProjectX\\src\\Career.cpp",
-                "C:\\Programacion\\C++\\Proyect X\\Registry-System\\ProjectX\\src\\Courses.cpp",
-                "C:\\Programacion\\C++\\Proyect X\\Registry-System\\ProjectX\\src\\Cycle.cpp",
-                "C:\\Programacion\\C++\\Proyect X\\Registry-System\\ProjectX\\src\\Group.cpp",
-                "C:\\Programacion\\C++\\Proyect X\\Registry-System\\ProjectX\\src\\Interface.cpp",
-                "C:\\Programacion\\C++\\Proyect X\\Registry-System\\ProjectX\\src\\Menu.cpp",
-                "C:\\Programacion\\C++\\Proyect X\\Registry-System\\ProjectX\\src\\University.cpp",
-                "C:\\Programacion\\C++\\Proyect X\\Registry-System\\ProjectX\\src\\Year.cpp"
+                "C:\\Dev\\C++\\Proyect X\\Registry-System\\ProjectX\\src\\main.cpp",
+                "C:\\Dev\\C++\\Proyect X\\Registry-System\\ProjectX\\src\\Career.cpp",
+                "C:\\Dev\\C++\\Proyect X\\Registry-System\\ProjectX\\src\\Courses.cpp",
+                "C:\\Dev\\C++\\Proyect X\\Registry-System\\ProjectX\\src\\Cycle.cpp",
+                "C:\\Dev\\C++\\Proyect X\\Registry-System\\ProjectX\\src\\Group.cpp",
+                "C:\\Dev\\C++\\Proyect X\\Registry-System\\ProjectX\\src\\Interface.cpp",
+                "C:\\Dev\\C++\\Proyect X\\Registry-System\\ProjectX\\src\\Menu.cpp",
+                "C:\\Dev\\C++\\Proyect X\\Registry-System\\ProjectX\\src\\University.cpp",
+                "C:\\Dev\\C++\\Proyect X\\Registry-System\\ProjectX\\src\\Year.cpp"
                 
             ],
             "group": {

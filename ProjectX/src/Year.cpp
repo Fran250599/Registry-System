@@ -1,7 +1,7 @@
 #include "../include/Year.h"
 
 Year::Year(){
-	this->annio = 0;
+	this->id = " ";
 	
 	this->c = new std::vector<Cycle*>(3);
 	
@@ -11,7 +11,7 @@ Year::Year(){
 }
 
 Year::Year(int _annio){
-	this->annio = _annio;
+	this->id = _annio;
 
 	this->c = new std::vector<Cycle*>(3);
 	for (int i = 0; i < 3; i++) {
@@ -19,13 +19,22 @@ Year::Year(int _annio){
 	}
 }
 
-int Year::getAnnio() const
+std::string Year::getId() const
 {
-    return annio;
+    return id;
+}
+int Year::getAnnio() const{
+	int aux = 0;
+
+	std::stringstream ss;  
+  	ss << this->id;  
+  	ss >> aux; 
+
+	return aux;
 }
 
-void Year::setAnnio(int annio){
-    this->annio = annio;
+void Year::setAnnio(std::string annio){
+    this->id = annio;
 }
 
 void Year::setCycleFinishDate(int n, std::string finishDate){
@@ -37,7 +46,7 @@ std::string Year::toString()
 {
 	std::stringstream x;
 
-	x << "Annio: " << this->annio << std::endl;
+	x << "Annio: " << Year::getAnnio() << std::endl;
 	int j = 0;
 
 	std::string inicio;
@@ -50,8 +59,8 @@ std::string Year::toString()
 		j++;
 
 		if (inicio != " ") {
-			x << "Inicio ciclo " << j << ":" << inicio << std::endl;
-			x << "Final ciclo " << j << ":" << final << std::endl << std::endl;
+			x << "Inicio ciclo " << j << ":  " << inicio << std::endl;
+			x << "Final ciclo " << j << ":  " << final << std::endl << std::endl;
 		}
 	}
 

@@ -24,6 +24,7 @@ public:
 	Courses(std::string, std::string, std::string, int, int, int, std::vector<std::string>*);
 
 	std::string getCode() { return this->code; }
+	std::string getName() { return this->name; }
 	List<Group*>* getGroups() { return this->groups; }
 
 	std::string studyPlanString();

@@ -3,19 +3,24 @@
 #include <iostream>
 #include <sstream>
 #include "Cycle.h"
+#include "Group.h"
 
 class Year {
 private:
-	int annio;
+	std::string id;
 	std::vector<Cycle*>* c;
 	//Donde 1 es primer ciclo, 2 es segundo ciclo y 3 es clases de verano
 	
+	
+
 public:
 	Year();
 	Year(int);
 public:
-    int getAnnio() const;
-    void setAnnio(int annio);
+    std::string getId() const;
+	int getAnnio() const;
+	std::vector<Cycle*>* getCycles() { return this->c ; }
+    void setAnnio(std::string annio);
 
 	void setCycleBeginDate(int, std::string);
 	void setCycleFinishDate(int, std::string);

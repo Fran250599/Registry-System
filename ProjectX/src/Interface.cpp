@@ -4,6 +4,12 @@ void Interface::print(std::string chain)
 {
 	std::cout << chain << '\n';
 }
+void Interface::printTab1(std::string chain){
+	std::cout << chain << "		";
+}
+void Interface::printTab2(std::string chain){
+	std::cout << chain << "			";
+}
 
 std::string Interface::getString()
 {
@@ -125,4 +131,13 @@ int Interface::getInt(int min, int max) {// gets and int and verifies if it's be
 		} while (value < min && value > max);
 		goto valido;
 	}
+}
+
+std::string Interface::intToString(int aux){
+	std::stringstream ss;
+
+	ss << aux; 
+	
+
+	return ss.str();
 }

@@ -1,11 +1,14 @@
 #pragma once
 #include<iostream>
+#include <sstream>
 #include<string>//includes getline()
 #include<stdlib.h>//includes system() 
 #include<Windows.h>
 struct Interface
 {
 	static void print(std::string);//prints on screen "output"
+	static void printTab1(std::string); 
+	static void printTab2(std::string);
 	static std::string getString();//asks user a string
 	static std::string* getDynamicString();
 	static int getInt();//asks user an integer
@@ -16,4 +19,5 @@ struct Interface
 	static void printWarning(std::string);
 	static void printSuccess(std::string);
 	static void cleanScreen();
+	static std::string intToString(int);
 };

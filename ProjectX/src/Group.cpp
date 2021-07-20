@@ -9,7 +9,7 @@ Group::Group(){
 	this->schedule= " ";
 }
 
-Group::Group(std::string _code, int _ncr, int _nGroup, Professor* _professor,  int _cupo, std::string _schedule) {
+Group::Group(std::string _code, int _ncr, int _nGroup, Professor* _professor,  int _cupo, std::string _schedule, std::string _careerCode) {
 
 	this->courseCode = _code;
 	this->ncr = _ncr;
@@ -17,6 +17,7 @@ Group::Group(std::string _code, int _ncr, int _nGroup, Professor* _professor,  i
 	this->professor = _professor;
 	this->cupo = _cupo;
 	this->schedule = _schedule;
+	this->careerCode = _careerCode;
 }
 
 std::string Group::toString() {

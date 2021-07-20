@@ -55,8 +55,11 @@ public:
 
 		//Consulta de plan de estudios vigente por carrera
 		void showStudyPlan();
+		//Proceso de asignacion de grupos
 		void groupCreation();
+		//Consulta general de matricula
 		void generalStudiesRequest();
+
 		
 
 	~University() {
