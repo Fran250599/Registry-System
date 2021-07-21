@@ -520,6 +520,7 @@ void University::listing()
 
 							Interface::printSuccess("Estudiante anadido a la carrera de");
 							Interface::print(auxCareer->getName());
+							system("PAUSE");
 						}
 					}
 					else if (opcion == 2)
@@ -530,11 +531,47 @@ void University::listing()
 						{
 
 							Interface::print("Estas son las carreras disponibles en este momento. ");
-
+							int j = 1;
 							for (int i = 0; i < aux; i++)
 							{
 								Career *aux = this->carreras->obtenerElemento(i);
-								Interface::print(i + ") " + aux->getName());
+								Interface::print(Interface::intToString(j) + ") " + aux->getCode() + " - " + aux->getName());
+								j++;
+							}
+
+							Interface::cleanTrash();
+							Interface::print("Por favor digite el codigo ");
+							std::string code = Interface::getString();
+
+							if (this->carreras->buscarEspecificoPorCodigo(code) == true)
+							{
+							true2:
+								//We're going to add the Student to this career students list
+								Career *auxCareer = this->carreras->obtenerElementoPorCodigo(code);
+								List<Student *> *careerStudentsList = auxCareer->getStudents();
+								careerStudentsList->insert(auxStudent);
+
+								//Now, we save the career code in the student information in case we need it in the future
+								auxStudent->setCareerCode(code);
+
+								Interface::printSuccess("Estudiante anadido a la carrera de");
+								Interface::print(auxCareer->getName());
+								system("PAUSE");
+							}
+							else
+							{
+								do
+								{
+									Interface::printError("Dato invalido. Por favor digite una de las carreras disponibles.");
+									Interface::cleanTrash();
+									Interface::print("Por favor digite el codigo ");
+									std::string code = Interface::getString();
+
+									Interface::cleanScreen();
+
+								} while (this->carreras->buscarEspecificoPorCodigo(code) == false);
+
+								goto true2;
 							}
 						}
 						else
@@ -577,10 +614,11 @@ void University::showListing()
 	{
 
 		int i = 0;
-		Career *auxCareer = new Career();
 
 		if (!this->carreras->vacia())
 		{
+			Career *auxCareer = this->carreras->obtenerElemento(i);
+
 			if (!auxCareer->getStudents()->vacia())
 			{
 
@@ -632,32 +670,45 @@ void University::showStudyPlan()
 	Interface::cleanScreen();
 	Interface::cleanTrash();
 
-	try{
-		if (!this->carreras->vacia()){
+	try
+	{
+		if (!this->carreras->vacia())
+		{
 			Interface::print("Digite el codigo de carrera: ");
 			std::string careerCode = Interface::getString();
 
-			if (this->carreras->buscarEspecificoPorCodigo(careerCode)){
+			if (this->carreras->buscarEspecificoPorCodigo(careerCode))
+			{
 				if (!this->carreras->vacia())
 				{
 					Career *auxCareer = this->carreras->obtenerElementoPorCodigo(careerCode);
-
-					Interface::print("Carrera: " + auxCareer->getName());
-					Interface::print("Tipo: " + auxCareer->getGrade());
-					Interface::print("\nPlan de estudios \n");
-
 					List<Courses *> *auxCourses = auxCareer->getCourses();
-					int cant = auxCourses->getCantidad();
-					int i = 0;
 
-					while (i < cant){
+					if (!auxCourses->vacia())
+					{
+						Interface::print("Carrera: " + auxCareer->getName());
+						Interface::print("Tipo: " + auxCareer->getGrade());
+						Interface::print("\nPlan de estudios \n");
 
-						Courses *auxCourse = auxCourses->obtenerElemento(i);
+						int cant = auxCourses->getCantidad();
+						int i = 0;
 
-						Interface::print(auxCourse->studyPlanString());
-						i++;
+						while (i < cant)
+						{
+
+							Courses *auxCourse = auxCourses->obtenerElemento(i);
+
+							Interface::print(auxCourse->studyPlanString());
+							i++;
+						}
+						system("PAUSE");
 					}
-					system("PAUSE");
+					else{
+						Interface::printError("Esta carrera no tiene cursos ingresados.");
+						system("PAUSE");
+						Interface::cleanScreen();
+						Interface::cleanTrash();
+						}
 				}
 				else
 				{
